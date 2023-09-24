@@ -1,11 +1,10 @@
 package com.saladjava.salad.stream;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.OptionalInt;
+import java.util.*;
 
-public class MapStream {
+//・mapメソッド・filterメソッド・anyMatch、allMatchメソッド・max、min、average、sumメソッド・count、findFirstメソッド・limit、skipメソッド・distinct、sortedメソッド・boxed、mapToInt、mapToDoubleメソッド
+
+public class StreamApiBasic {
     public static void main(String[] args){
         int[] array = new int[] {1,2,3,4,5};
         String[] arrayStr = new String[]{"lion", "mouse", "cat", "dog", "fox", "bear" };
@@ -48,6 +47,8 @@ public class MapStream {
         int[] arrayDistinct = Arrays.stream(array).distinct().toArray();
         int[] arraySorted = Arrays.stream(array).sorted().toArray();
 
+        // sorted(降順) Comparator メソッドを使って行う. このメソッド自体はStreamIntを受け付けないのでIntegerに変換必要
+        List<Integer> arraySortedDesc = Arrays.stream(array).boxed().sorted(Comparator.reverseOrder()).toList();
 
     }
 }
