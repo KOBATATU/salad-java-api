@@ -47,8 +47,8 @@ public class StreamApiAdvanced {
         // partition
         Map<Boolean, List<Robot>> partitionColor = robots.stream().collect(Collectors.partitioningBy(r -> r.getColor().equals("青")));
 
-        // クラスソート
-        Comparator<Robot> comparator = Comparator.comparing(Robot::getSeries).thenComparing(Robot::getColor);
+        // クラスソート(nullを後ろにおき、昇順で並べる) https://qiita.com/wrongwrong/items/44e041c68ffdda34ef1c
+        Comparator<Robot> comparator = Comparator.comparing(Robot::getSeries, Comparator.nullsLast(Comparator.naturalOrder())).thenComparing(Robot::getColor);
         List<Robot> robotSorted = robots.stream().sorted(comparator).toList();
         // reversed(1つめでシリーズを降順に。2つめのreversedで昇順に変更される)
         Comparator<Robot> comparatorReversed = Comparator.comparing(Robot::getSeries).reversed().thenComparing(Robot::getColor).reversed();
